@@ -1,5 +1,15 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'session_manager.dart'; // Importe a classe SessionManager
+
+class User {
+  String username;
+  String email;
+
+  User({required this.username, required this.email});
+}
 
 class LoginPage extends StatefulWidget {
   const LoginPage() : super();
@@ -13,6 +23,40 @@ class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _rememberMeChecked = false;
+  late User? currentUser;
+
+  Future<Map<String, dynamic>> login(String email, String password) async {
+    const String appId = 'bDAywaZH2UP0lTxB6tNae8zvjhjOVRNeT2xfMK04';
+    const String apiKey = 'ocgoygFJj53BKwD3zTV0vQjoiulDrfM8HHiwGOgp';
+    const String apiUrl = 'https://parseapi.back4app.com/login';
+
+    final response = await http.post(
+      Uri.parse(apiUrl),
+      headers: {
+        'X-Parse-Application-Id': appId,
+        'X-Parse-REST-API-Key': apiKey,
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode({
+        'username': email,
+        'password': password,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      Map<String, dynamic> responseData = jsonDecode(response.body);
+      print('Login bem-sucedido. Token: ${responseData['sessionToken']}');
+      return responseData;
+    } else {
+      throw Exception('Failed to login: ${response.body}');
+    }
+  }
+
+  Future<void> saveUserData(String username, String email) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('username', username);
+    await prefs.setString('email', email);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,14 +128,26 @@ class _LoginPageState extends State<LoginPage> {
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        FirebaseAuth.instance
-                            .signInWithEmailAndPassword(
-                          email: _emailController.text,
-                          password: _passwordController.text,
-                        )
-                            .then((result) {
-                          Navigator.of(context)
-                              .pushNamedAndRemoveUntil('/main', (_) => false);
+                        login(
+                          _emailController.text,
+                          _passwordController.text,
+                        ).then((result) {
+                          saveUserData(result['username'], result['email'])
+                              .then((_) {
+                            setState(() {
+                              currentUser = User(
+                                  username: result['username'],
+                                  email: result['email']);
+                            });
+                            // Armazena o token usando o SessionManager
+                            SessionManager()
+                                .setSessionToken(result['sessionToken']);
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                              '/main',
+                              (_) => false,
+                              arguments: currentUser,
+                            );
+                          });
                         }).catchError((error) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(

@@ -1,5 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../appbar.dart';
 import '../input.dart';
@@ -14,9 +16,43 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPage extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
+  final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
   final _passwordConfirmationController = TextEditingController();
   bool _agreeWithTermsAndConditions = false;
+
+  Future<Map<String, dynamic>> register(
+      String username, String password, String email) async {
+    const String appId = 'bDAywaZH2UP0lTxB6tNae8zvjhjOVRNeT2xfMK04';
+    const String apiKey = 'ocgoygFJj53BKwD3zTV0vQjoiulDrfM8HHiwGOgp';
+    const String apiUrl = 'https://parseapi.back4app.com';
+
+    final response = await http.post(
+      Uri.parse('$apiUrl/users'),
+      headers: {
+        'X-Parse-Application-Id': appId,
+        'X-Parse-REST-API-Key': apiKey,
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode({
+        'username': username,
+        'password': password,
+        'email': email,
+      }),
+    );
+
+    if (response.statusCode == 201) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('Failed to register: ${response.body}');
+    }
+  }
+
+  Future<void> saveUserData(String username, String email) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('username', username);
+    await prefs.setString('email', email);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +80,18 @@ class _RegisterPage extends State<RegisterPage> {
               ),
               SizedBox(height: 24),
               CustomInputField(
+                keyboardType: TextInputType.text,
+                hintText: "Username",
+                controller: _usernameController,
+                validator: (String? username) {
+                  if (username == null || username.isEmpty) {
+                    return "Username is required";
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 24),
+              CustomInputField(
                 keyboardType: TextInputType.visiblePassword,
                 hintText: "Senha",
                 obscureText: true,
@@ -67,7 +115,7 @@ class _RegisterPage extends State<RegisterPage> {
                   if (password == null) {
                     return null;
                   }
-                  if (password != _passwordConfirmationController.value.text) {
+                  if (password != _passwordController.value.text) {
                     return "Password is not confirmed";
                   }
                 },
@@ -120,28 +168,23 @@ class _RegisterPage extends State<RegisterPage> {
                     ? null
                     : () {
                         if (_formKey.currentState!.validate()) {
-                          FirebaseAuth.instance
-                              .createUserWithEmailAndPassword(
-                            email: _emailController.value.text,
-                            password: _passwordController.value.text,
-                          )
-                              .then((result) {
-                            Navigator.of(context)
-                                .pushNamedAndRemoveUntil('/main', (_) => false);
+                          register(
+                            _usernameController.value.text,
+                            _passwordController.value.text,
+                            _emailController.value.text,
+                          ).then((result) {
+                            saveUserData(_usernameController.value.text,
+                                    _emailController.value.text)
+                                .then((_) {
+                              Navigator.of(context).pushNamedAndRemoveUntil(
+                                  '/main', (_) => false);
+                            });
                           }).catchError((Object exception) {
-                            if (exception is FirebaseAuthException) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                    content: Text(
-                                        'Failed to register: ${exception.message}')),
-                              );
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                    content: Text(
-                                        'Unhandled register error ${exception}')),
-                              );
-                            }
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                  content: Text(
+                                      'Failed to register: ${exception.toString()}')),
+                            );
                           });
                         }
                       },

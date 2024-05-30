@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'session_manager.dart'; // Importar a SessionManager
+import 'pagina_principal.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -7,86 +9,169 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  DateTime? _startDate;
-  DateTime? _endDate;
-  int? _daysDifference;
+  List<bool> isButtonPressed = List.filled(6, false);
+
+  void _logout() {
+    FirebaseAuth.instance.signOut().then((result) {
+      Navigator.of(context).pushNamedAndRemoveUntil("/login", (route) => false);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    User? user = FirebaseAuth.instance.currentUser;
-    if (user == null) {
-      return Container(
-        child: Text("User not found"),
-      );
-    }
-
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Main"),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.logout),
-            onPressed: _logout,
-            tooltip: "Logout",
-          )
-        ],
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
+      //  appBar: AppBar(
+      //   title: Text("Main"),
+      //   actions: [
+      //     IconButton(
+      //       icon: Icon(Icons.logout),
+      //       onPressed: _logout,
+      //       tooltip: "Logout",
+      //     )
+      //   ],
+      // ),
+      body: SafeArea(
+        top: true,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
           children: [
-            Text("Bem vindo ${user.email}"),
-            SizedBox(height: 20),
-            Text("Data Inicial"),
-            SizedBox(height: 8),
-            ElevatedButton(
-              onPressed: () => _selectDate(true),
-              // style: ElevatedButton.styleFrom(
-              //   primary:
-              //       Color(0xff3ef2f2), // Defina a cor de fundo do botão aqui
-              // ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xff3ef2f2),
-              ),
-
-              child: Text(
-                _startDate == null
-                    ? 'Selecione uma data'
-                    : 'Data selecionada: ${_formatDate(_startDate!)}',
+            Align(
+              alignment: AlignmentDirectional(-1, 0),
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                child: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back,
+                    size: 24,
+                  ),
+                  onPressed: () {
+                    _logout(); // Chame a função _logout aqui
+                  },
+                ),
               ),
             ),
-            SizedBox(height: 20),
-            Text("Data Final"),
-            SizedBox(height: 8),
-            ElevatedButton(
-              onPressed: () => _selectDate(false),
-              // style: ElevatedButton.styleFrom(
-              //   primary:
-              //       Color(0xff3ef2f2), // Defina a cor de fundo do botão aqui
-              // ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xff3ef2f2),
-              ),
-              child: Text(
-                _endDate == null
-                    ? 'Selecione uma data'
-                    : 'Data selecionada: ${_formatDate(_endDate!)}',
+            Text(
+              'Antes de começar, gostariamos de \nsaber um pouco sobre os seus interesses!',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 16,
               ),
             ),
-            SizedBox(height: 20),
-            Text("Quantidade de dias: $_daysDifference"),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _calculateDifference,
-              child: Text("Calcular"),
-              // style: ElevatedButton.styleFrom(
-              //   primary:
-              //       Color(0xff3ef2f2), // Defina a cor de fundo do botão aqui
-              // ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xff3ef2f2),
+            SizedBox(height: 10), // Espaçamento entre os elementos
+            Text(
+              'Escolha pelo menos três dos tópicos abaixo',
+              style: TextStyle(
+                fontSize: 12,
               ),
+            ),
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        _buildImageButton(
+                            0, 'https://picsum.photos/seed/473/600'),
+                        _buildImageButton(
+                            1, 'https://picsum.photos/seed/227/600'),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        _buildImageButton(
+                            2, 'https://picsum.photos/seed/473/600'),
+                        _buildImageButton(
+                            3, 'https://picsum.photos/seed/227/600'),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        _buildImageButton(
+                            4, 'https://picsum.photos/seed/473/600'),
+                        _buildImageButton(
+                            5, 'https://picsum.photos/seed/227/600'),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                SizedBox(height: 15),
+                SizedBox(
+                  width: 350,
+                  height: 40,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Imprime o token ao pressionar o botão "Avançar"
+                      String? token = SessionManager().sessionToken;
+                      print('Token: $token');
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xFF0072DE),
+                      onPrimary: Colors.white,
+                      elevation: 3,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: Text(
+                      'Avançar',
+                      style: TextStyle(
+                        fontFamily: 'Readex Pro',
+                        color: Colors.white,
+                        letterSpacing: 0,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 5), // Espaço entre os botões
+                SizedBox(
+                  width: 350,
+                  height: 40,
+                  child: OutlinedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PaginaPrincipal()),
+                      );
+                    },
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(
+                        color: Color(0xFF0072DE),
+                        width: 2,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: Text(
+                      'Pular ➔',
+                      style: TextStyle(
+                        fontFamily: 'Readex Pro',
+                        color: Color(0xFF0072DE),
+                        letterSpacing: 0,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
@@ -94,58 +179,31 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  String _formatDate(DateTime date) {
-    return "${date.day}/${date.month}/${date.year}";
-  }
-
-  _selectDate(bool isStartDate) async {
-    final DateTime? pickedDate = await showDatePicker(
-      context: context,
-      initialDate: isStartDate
-          ? _startDate ?? DateTime.now()
-          : _endDate ?? DateTime.now(),
-      firstDate: DateTime(1900),
-      lastDate: DateTime(2101),
+  Widget _buildImageButton(int index, String imageUrl) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          isButtonPressed[index] = !isButtonPressed[index];
+        });
+      },
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: Container(
+          width: 150,
+          height: 150,
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: isButtonPressed[index] ? Colors.blue : Colors.transparent,
+              width: 3,
+            ),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Image.network(
+            imageUrl,
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
     );
-    if (pickedDate != null) {
-      setState(() {
-        if (isStartDate) {
-          _startDate = pickedDate;
-        } else {
-          _endDate = pickedDate;
-        }
-      });
-    }
-  }
-
-  _calculateDifference() {
-    if (_startDate != null && _endDate != null) {
-      final difference = _endDate!.difference(_startDate!).inDays;
-      setState(() {
-        _daysDifference = difference;
-      });
-    } else {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text("Erro"),
-            content: Text("Por favor, selecione ambas as datas."),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: Text("OK"),
-              ),
-            ],
-          );
-        },
-      );
-    }
-  }
-
-  _logout() {
-    FirebaseAuth.instance.signOut().then((result) {
-      Navigator.of(context).pushNamedAndRemoveUntil("/login", (_) => false);
-    });
   }
 }
