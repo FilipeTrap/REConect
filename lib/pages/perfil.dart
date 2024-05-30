@@ -364,7 +364,7 @@ class _PerfilPageState extends State<PerfilPage> {
               'Estamos na versão ALFA 0.1\n'
               'App Development: Filipe Gomes\n'
               'Design: Yasmin do Edem, Eduardo Jorge e Liana Vitoria\n'
-              'Documentação: Yasmin do Edem e Eduardo Jorge\n'
+              'Documentação: Yasmin do Edem e Eduardo Jorge \n'
               'Apoio: Isabela Araujo\n',
               textAlign: TextAlign.left,
             ),
