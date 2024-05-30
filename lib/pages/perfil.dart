@@ -5,6 +5,7 @@ import 'gift_page.dart';
 import 'pesquisa.dart';
 import 'session_manager.dart';
 import 'editar_perfil.dart';
+import 'configuracao_page.dart';
 
 class PerfilPage extends StatefulWidget {
   @override
@@ -56,7 +57,6 @@ class _PerfilPageState extends State<PerfilPage> {
                       ),
                     ),
                     SizedBox(height: 20),
-
                     Container(
                       width: 300,
                       height: 100,
@@ -129,7 +129,6 @@ class _PerfilPageState extends State<PerfilPage> {
                         ],
                       ),
                     ),
-
                     SizedBox(height: 20),
                     // Seções adicionais da página
                     Container(
@@ -156,11 +155,10 @@ class _PerfilPageState extends State<PerfilPage> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Image.network(
-                                  'https://picsum.photos/seed/151/600',
-                                  width: 50,
-                                  height: 50,
-                                  fit: BoxFit.cover,
+                                Icon(
+                                  Icons.person,
+                                  color: Colors.black,
+                                  size: 30,
                                 ),
                                 Text(
                                   'Editar Perfil',
@@ -177,12 +175,12 @@ class _PerfilPageState extends State<PerfilPage> {
                                     size: 30,
                                   ),
                                   onPressed: () {
-                                    print('Editar Perfil pressed ...');
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) =>
-                                              EditarPerfilPage()),
+                                        builder: (context) =>
+                                            EditarPerfilPage(),
+                                      ),
                                     );
                                   },
                                 ),
@@ -202,11 +200,10 @@ class _PerfilPageState extends State<PerfilPage> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Image.network(
-                                  'https://picsum.photos/seed/151/600',
-                                  width: 50,
-                                  height: 50,
-                                  fit: BoxFit.cover,
+                                Icon(
+                                  Icons.settings_sharp,
+                                  color: Colors.black,
+                                  size: 30,
                                 ),
                                 Text(
                                   'Configurações',
@@ -223,7 +220,12 @@ class _PerfilPageState extends State<PerfilPage> {
                                     size: 30,
                                   ),
                                   onPressed: () {
-                                    print('Configurações pressed ...');
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ConfiguracaoPage()),
+                                    );
                                   },
                                 ),
                               ],
@@ -242,11 +244,10 @@ class _PerfilPageState extends State<PerfilPage> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Image.network(
-                                  'https://picsum.photos/seed/151/600',
-                                  width: 50,
-                                  height: 50,
-                                  fit: BoxFit.cover,
+                                Icon(
+                                  Icons.public,
+                                  color: Colors.black,
+                                  size: 30,
                                 ),
                                 Text(
                                   'Versão',
@@ -263,7 +264,7 @@ class _PerfilPageState extends State<PerfilPage> {
                                     size: 30,
                                   ),
                                   onPressed: () {
-                                    print('Versão pressed ...');
+                                    _showVersionDialog(context);
                                   },
                                 ),
                               ],
@@ -349,6 +350,35 @@ class _PerfilPageState extends State<PerfilPage> {
           ],
         ),
       ),
+    );
+  }
+
+  void _showVersionDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Versão do App'),
+          content: SingleChildScrollView(
+            child: Text(
+              'Estamos na versão ALFA 0.1\n'
+              'App Development: Filipe Gomes\n'
+              'Design: Yasmin do Edem, Eduardo Jorge e Liana Vitoria\n'
+              'Documentação: Yasmin do Edem e Eduardo Jorge\n'
+              'Apoio: Isabela Araujo\n',
+              textAlign: TextAlign.left,
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Fechar'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
