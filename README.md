@@ -29,6 +29,4 @@ Este projeto está licenciado sob a [Licença MIT](LICENSE).
 
 Esperamos que o REConect torne sua experiência de explorar o Recife ainda mais agradável e informativa. Se tiver alguma dúvida ou sugestão, entre em contato!
 
----
 
-**Nota:** Certifique-se de substituir `https://github.com/seu-usuario/REConect.git` pelo link real do seu repositório GitHub.
