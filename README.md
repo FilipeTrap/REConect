@@ -1,16 +1,34 @@
-# Simple Login App
+# REConect
 
-A new Flutter project.
+Projeto em Flutter para a Residência.
 
-## Getting Started
+## Sobre o Projeto
 
-This project is a starting point for a Flutter application.
+REConect é um aplicativo desenvolvido em Flutter com o objetivo de promover o turismo na cidade do Recife. Nosso intuito é criar uma plataforma simples e segura que ajude tanto moradores quanto visitantes a definir as melhores rotas e descobrir lugares incríveis para conhecer na cidade.
 
-A few resources to get you started if this is your first Flutter project:
+## Funcionalidades
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- **Rotas Turísticas:** Encontre as melhores rotas para explorar o Recife.
+- **Pontos de Interesse:** Descubra locais populares e escondidos, desde atrações turísticas até restaurantes e bares.
+- **Segurança:** Informações atualizadas sobre a segurança dos locais.
+- **Personalização:** Ajuste as preferências de rotas de acordo com seus interesses e necessidades.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Recursos Adicionais
+
+Para obter mais ajuda com o Flutter, consulte a [documentação online](https://flutter.dev/docs), que oferece tutoriais, exemplos, orientação sobre desenvolvimento móvel e uma referência completa da API.
+
+## Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests.
+
+## Licença
+
+Este projeto está licenciado sob a [Licença MIT](LICENSE).
+
+---
+
+Esperamos que o REConect torne sua experiência de explorar o Recife ainda mais agradável e informativa. Se tiver alguma dúvida ou sugestão, entre em contato!
+
+---
+
+**Nota:** Certifique-se de substituir `https://github.com/seu-usuario/REConect.git` pelo link real do seu repositório GitHub.
