@@ -254,17 +254,13 @@ class _PesquisaPageState extends State<PesquisaPage> {
     // Adicione mais entradas aqui para outras páginas
   ];
 
-  void navigateToPage(Map<String, dynamic> pageData) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => DynamicPage(pageData: pageData),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    String searchQuery = inputController.text.toLowerCase();
+    List<Map<String, dynamic>> filteredPages = pagesData.where((page) {
+      return page['name'].toLowerCase().contains(searchQuery);
+    }).toList();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Pesquisa'),
@@ -310,15 +306,15 @@ class _PesquisaPageState extends State<PesquisaPage> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  for (int i = 0; i < pagesData.length; i += 2)
+                  for (int i = 0; i < filteredPages.length; i += 2)
                     Padding(
                       padding: const EdgeInsets.only(bottom: 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          _buildClickableImage(context, pagesData[i]),
-                          if (i + 1 < pagesData.length)
-                            _buildClickableImage(context, pagesData[i + 1]),
+                          _buildClickableImage(context, filteredPages[i]),
+                          if (i + 1 < filteredPages.length)
+                            _buildClickableImage(context, filteredPages[i + 1]),
                         ],
                       ),
                     ),
@@ -427,6 +423,13 @@ class _PesquisaPageState extends State<PesquisaPage> {
           ),
         ],
       ),
+    );
+  }
+
+  void navigateToPage(Map<String, dynamic> pageData) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => DynamicPage(pageData: pageData)),
     );
   }
 }
