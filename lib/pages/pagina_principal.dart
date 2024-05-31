@@ -618,7 +618,7 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
                     ),
                     IconButton(
                       icon: Icon(
-                        Icons.card_giftcard_sharp,
+                        Icons.directions,
                         color: Colors.black,
                         size: 30,
                       ),

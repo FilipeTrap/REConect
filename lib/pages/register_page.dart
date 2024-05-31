@@ -54,6 +54,27 @@ class _RegisterPage extends State<RegisterPage> {
     await prefs.setString('email', email);
   }
 
+  void _showTermsDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Termos de Uso'),
+        content: SingleChildScrollView(
+          child: Text(
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget urna vitae nibh malesuada ultricies. Phasellus volutpat ipsum a ligula suscipit, non fermentum tortor facilisis.'),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('Fechar'),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -136,24 +157,7 @@ class _RegisterPage extends State<RegisterPage> {
                     ),
                     TextButton(
                       child: Text('Termos de uso'),
-                      onPressed: () {
-                        print("// Terms & Conditions");
-                      },
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 8),
-                      child: Text(
-                        " e ",
-                        style: TextStyle(
-                          color: Color(0xFFa8a8a7),
-                        ),
-                      ),
-                    ),
-                    TextButton(
-                      child: Text('Declaração de Privacidade.'),
-                      onPressed: () {
-                        print("// Declaração de Privacidade.");
-                      },
+                      onPressed: _showTermsDialog,
                     ),
                   ],
                 ),
@@ -163,7 +167,7 @@ class _RegisterPage extends State<RegisterPage> {
               ),
               SizedBox(height: 24),
               ElevatedButton(
-                child: Text("Register"),
+                child: Text("Cadastrar"),
                 onPressed: !_agreeWithTermsAndConditions
                     ? null
                     : () {
@@ -177,7 +181,7 @@ class _RegisterPage extends State<RegisterPage> {
                                     _emailController.value.text)
                                 .then((_) {
                               Navigator.of(context).pushNamedAndRemoveUntil(
-                                  '/main', (_) => false);
+                                  '/login', (_) => false);
                             });
                           }).catchError((Object exception) {
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -197,7 +201,7 @@ class _RegisterPage extends State<RegisterPage> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Text(
-                    "Already have an account?",
+                    "Já tem uma conta?",
                     style: TextStyle(
                       color: Color(0xFFb8b8b8),
                     ),
