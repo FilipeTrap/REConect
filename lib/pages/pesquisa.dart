@@ -26,11 +26,13 @@ class _PesquisaPageState extends State<PesquisaPage> {
         'https://media-cdn.tripadvisor.com/media/photo-s/02/60/a2/dd/classico-com-adega-maravilhosa.jpg',
         'https://visit.recife.br/wp-content/uploads/2017/11/onde-comer-leite-02.jpg'
       ],
+      'endereço':
+          'Praça Joaquim Nabuco, 147 - Santo Antônio, Recife - PE, 50010-480',
+      'tipo': 'restaurante'
     },
-
     {
       'name': 'Restaurante Parraxaxá',
-      'location': 'Boa Viagem / Casa Forte',
+      'location': 'Casa Forte',
       'imageUrl':
           'https://media-cdn.tripadvisor.com/media/photo-s/05/58/e8/1d/parraxaxa.jpg',
       'description':
@@ -42,6 +44,8 @@ class _PesquisaPageState extends State<PesquisaPage> {
         'https://media-cdn.tripadvisor.com/media/photo-s/1c/67/f5/29/parraxaxa-casa-forte.jpg',
         'https://rota1976.com/wp-content/uploads/2018/11/IMG_7126.jpg'
       ],
+      'endereço': 'R. Igarassu, 40 - Casa Forte, Recife - PE, 52060-400',
+      'tipo': 'restaurante'
     },
     {
       'name': 'Restaurante Bargaço',
@@ -57,6 +61,8 @@ class _PesquisaPageState extends State<PesquisaPage> {
         'https://media-cdn.tripadvisor.com/media/photo-s/0b/0b/c0/66/bargaco-recife-pe-prato.jpg',
         'https://media-cdn.tripadvisor.com/media/photo-s/0d/b0/5a/46/peixe-inteiro.jpg'
       ],
+      'endereço': 'Av. Antônio de Goes, 62 - Pina, Recife - PE, 51011-000',
+      'tipo': 'restaurante'
     },
     {
       'name': 'Moendo Na Laje',
@@ -72,6 +78,8 @@ class _PesquisaPageState extends State<PesquisaPage> {
         'https://cdn.folhape.com.br/img/pc/1100/1/dn_arquivo/2023/01/whatsapp-image-2023-01-27-at-164551.jpeg',
         'https://visit.recife.br/wp-content/uploads/2020/07/cais-destaque-1-1.jpg'
       ],
+      'endereço': 'Av. Alfredo Lisboa, 810 - 7º andar - Recife, PE, 50030-240',
+      'tipo': 'restaurante'
     },
     {
       'name': 'Bar Central',
@@ -87,6 +95,9 @@ class _PesquisaPageState extends State<PesquisaPage> {
         'https://media-cdn.tripadvisor.com/media/photo-s/08/4d/bd/80/central.jpg',
         'https://www.joaoalberto.com/wp-content/uploads/2019/05/30/Gole__Gula_Bar_Central_Recife_PE_03.jpg'
       ],
+      'endereço':
+          'R. Mamede Simões, 144 - Loja - 8 - Santo Amaro, Recife - PE, 50050-570',
+      'tipo': 'bar'
     },
     {
       'name': 'Downtown Pub',
@@ -101,6 +112,9 @@ class _PesquisaPageState extends State<PesquisaPage> {
         'https://www.guiadasemana.com.br/contentFiles/system/pictures/2013/6/79104/cropped/downtown-pub-recife-guia.jpg',
         'https://www.diariodepernambuco.com.br/static/app/noticia_127983242361/2018/05/03/750801/20180503185622573189e.jpg'
       ],
+      'endereço':
+          'Rua Conselheiro Portela, 560 - Espinheiro, Recife - PE, 52020-035',
+      'tipo': 'bar'
     },
     {
       'name': 'Burburinho Recifebar',
@@ -116,6 +130,8 @@ class _PesquisaPageState extends State<PesquisaPage> {
         'https://www.viajali.com.br/wp-content/uploads/2018/09/bares-em-recife-014-775x477.jpg',
         'https://media-cdn.tripadvisor.com/media/photo-s/10/70/0b/5c/photo0jpg.jpg'
       ],
+      'endereço': 'R. Vig. Tenório, 185 - Recife, PE, 50030-010',
+      'tipo': 'bar'
     },
     {
       'name': 'San Botequim',
@@ -131,6 +147,9 @@ class _PesquisaPageState extends State<PesquisaPage> {
         'https://img.restaurantguru.com/rbac-facade-San-Botequim-Boa-Viagem.jpg',
         'https://img.restaurantguru.com/rbf5-exterior-San-Botequim-Boa-Viagem.jpg'
       ],
+      'endereço':
+          'R. Comendador Franco Ferreira, 430 - San Martin, Recife - PE, 50761-310',
+      'tipo': 'bar'
     },
     {
       'name': 'Hotel Atlante Plaza',
@@ -142,9 +161,11 @@ class _PesquisaPageState extends State<PesquisaPage> {
         'https://www.kayak.com.br/rimg/himg/de/96/aa/expediav2-17253-b9d024-829477.jpg',
         'https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_600,q_auto,w_600//hotelier-images/25/f4/b6c8ebfd4f941ec621f5fc1e5dc5b4225c9c1d46286034367dc03589ef93.jpeg',
         'https://images.trvl-media.com/lodging/1000000/450000/443800/443714/c3c85a21.jpg',
-        'https://cf.bstatic.com/xdata/images/hotel/max1024x768/291327885.jpg',
+        'https://visit.recife.br/wp-content/uploads/2017/07/hotel-atlante-plaza-topo-mobile-300x189.jpg',
         'https://media-cdn.tripadvisor.com/media/photo-s/07/75/bb/d7/piscina-com-bar-e-aquecida.jpg'
       ],
+      'endereço': 'Av. Boa Viagem, 5426 - Boa Viagem, Recife - PE, 51030-000',
+      'tipo': 'hotel'
     },
     {
       'name': 'Mar Hotel Conventions',
@@ -160,6 +181,9 @@ class _PesquisaPageState extends State<PesquisaPage> {
         'https://i.ytimg.com/vi/WoyQk6FraUI/hqdefault.jpg',
         'https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_600,q_auto,w_600//hotelier-images/fb/d5/4e433696bb2ae8ba063e16f7ff5cf70047bb5824e19bba266dc7d45abf44.jpeg'
       ],
+      'endereço':
+          'R. Barão de Souza Leão, 451 - Boa Viagem, Recife - PE, 51030-300',
+      'tipo': 'hotel'
     },
     {
       'name': 'Radisson Hotel Recife',
@@ -175,6 +199,8 @@ class _PesquisaPageState extends State<PesquisaPage> {
         'https://radisson.recifetophotels.com/data/Images/1920x1080w/12804/1280492/1280492593/image-recife-radisson-hotel-2.JPEG',
         'https://radisson.recifetophotels.com/data/Images/1920x1080w/12804/1280492/1280492155/image-recife-radisson-hotel-7.JPEG'
       ],
+      'endereço': 'Av. Boa Viagem, 1906 - Boa Viagem, Recife - PE, 51011-000',
+      'tipo': 'hotel'
     },
     {
       'name': 'Recife Plaza Hotel',
@@ -190,6 +216,8 @@ class _PesquisaPageState extends State<PesquisaPage> {
         'https://recife-plaza-hotel.hotelempernambuco.com/data/Images/1920x1080w/12394/1239464/1239464743/image-recife-recife-plaza-hotel-50050-000-15.JPEG',
         'https://recife-plaza-hotel.hotelempernambuco.com/data/Images/1920x1080w/12394/1239470/1239470356/image-recife-recife-plaza-hotel-50050-000-16.JPEG'
       ],
+      'endereço': 'R. da Aurora, 225 - Boa Vista, Recife - PE, 50050-000',
+      'tipo': 'hotel'
     },
     {
       'name': 'Clube Metropole',
@@ -205,6 +233,8 @@ class _PesquisaPageState extends State<PesquisaPage> {
         'https://instaload.net/pt/wp-content/uploads/2023/01/club-metropole-6.jpg',
         'https://instaload.net/pt/wp-content/uploads/2023/01/club-metropole-7.jpg'
       ],
+      'endereço': 'R. das Ninfas, 125 - Boa Vista, Recife - PE, 50070-050',
+      'tipo': 'boate'
     },
     {
       'name': 'Sala De Reboco',
@@ -220,6 +250,8 @@ class _PesquisaPageState extends State<PesquisaPage> {
         'https://media-cdn.tripadvisor.com/media/photo-m/1280/18/2b/ff/66/vista-interna.jpg',
         'https://media-cdn.tripadvisor.com/media/photo-w/18/2b/fe/ee/ambiente-interno.jpg'
       ],
+      'endereço': 'R. Gregório Júnior, 264 - Cordeiro, Recife - PE, 50630-245',
+      'tipo': 'boate'
     },
     {
       'name': 'MKB Meu Kaso Bar',
@@ -235,6 +267,8 @@ class _PesquisaPageState extends State<PesquisaPage> {
         'https://i.ytimg.com/vi/G6ksAqksSu0/hqdefault.jpg',
         'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/af/ef/05/pub-crawl-recife.jpg'
       ],
+      'endereço': 'R. Corredor do Bpo., 6 - Boa Vista, Recife - PE, 50050-090',
+      'tipo': 'boate'
     },
     {
       'name': 'Sampa Night Club',
@@ -249,9 +283,10 @@ class _PesquisaPageState extends State<PesquisaPage> {
         'https://www.jornaldocomercio.com/_midias/jpg/2022/04/26/1980___crocodillo_s___acervo_fabio_reis__5_-9611021.jpg',
         'https://cdn.topmidianews.com.br/upload/dn_arquivo/2024/05/boate-da-putaria-2.jpg'
       ],
+      'endereço':
+          'Rua Wilfrid Russel Shorto, 90 - Boa Viagem, Recife - PE, 51020-300',
+      'tipo': 'boate'
     },
-
-    // Adicione mais entradas aqui para outras páginas
   ];
 
   @override
@@ -350,7 +385,7 @@ class _PesquisaPageState extends State<PesquisaPage> {
                   ),
                   IconButton(
                     icon: Icon(
-                      Icons.card_giftcard_sharp,
+                      Icons.directions,
                       color: Colors.black,
                       size: 30,
                     ),

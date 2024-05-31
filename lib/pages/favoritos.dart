@@ -61,7 +61,7 @@ class _FavoritosPageState extends State<FavoritosPage> {
                   ),
                   IconButton(
                     icon: Icon(
-                      Icons.card_giftcard_sharp,
+                      Icons.directions,
                       color: Colors.black,
                       size: 30,
                     ),

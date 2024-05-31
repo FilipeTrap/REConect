@@ -32,7 +32,7 @@ class _PerfilPageState extends State<PerfilPage> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(50),
                       child: Image.network(
-                        'https://picsum.photos/seed/420/600',
+                        'https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg',
                         width: 100,
                         height: 100,
                         fit: BoxFit.cover,
@@ -305,7 +305,7 @@ class _PerfilPageState extends State<PerfilPage> {
                     ),
                     IconButton(
                       icon: Icon(
-                        Icons.card_giftcard_sharp,
+                        Icons.directions,
                         color: Colors.black,
                         size: 30,
                       ),
