@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'favoritos.dart';
 import 'gift_page.dart';
 import 'pagina_principal.dart';
+import 'package:http/http.dart' as http;
+import 'session_manager.dart';
 
 class PesquisaPage extends StatefulWidget {
   @override

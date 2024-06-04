@@ -55,6 +55,7 @@ class _EditarPerfilPageState extends State<EditarPerfilPage> {
                 TextFormField(
                   controller: _usernameController,
                   decoration: InputDecoration(labelText: 'Usuário'),
+                  readOnly: true,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Por favor, insira o nome de usuário';

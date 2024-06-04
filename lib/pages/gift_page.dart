@@ -495,12 +495,17 @@ class _GiftPageState extends State<GiftPage> {
             Spacer(),
             ElevatedButton(
               onPressed: navigateToCreateRoutePage,
+              style: ElevatedButton.styleFrom(
+                primary: Color(0xFF0072DE),
+                onPrimary: Colors.white,
+              ),
               child: Text('Criar Rota'),
             ),
             ElevatedButton(
               onPressed: selectedRoute != null ? deleteRoute : null,
               style: ElevatedButton.styleFrom(
                 primary: Colors.red,
+                onPrimary: Colors.white,
               ),
               child: Text('Deletar Rota'),
             ),

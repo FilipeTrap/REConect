@@ -88,7 +88,7 @@ class _PerfilPageState extends State<PerfilPage> {
                                 ),
                               ),
                               Text(
-                                '120',
+                                '0',
                                 style: TextStyle(
                                   color: Color(0xFF0072DE),
                                   fontWeight: FontWeight.w600,
@@ -117,7 +117,7 @@ class _PerfilPageState extends State<PerfilPage> {
                                 ),
                               ),
                               Text(
-                                '473',
+                                '0',
                                 style: TextStyle(
                                   color: Color(0xFF0072DE),
                                   fontWeight: FontWeight.w600,

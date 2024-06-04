@@ -59,7 +59,7 @@ class _MainPageState extends State<MainPage> {
             ),
             SizedBox(height: 10), // Espaçamento entre os elementos
             Text(
-              'Escolha pelo menos três dos tópicos abaixo',
+              'Escolha seus interesses a baixo',
               style: TextStyle(
                 fontSize: 12,
               ),
@@ -75,10 +75,8 @@ class _MainPageState extends State<MainPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        _buildImageButton(
-                            0, 'https://picsum.photos/seed/473/600'),
-                        _buildImageButton(
-                            1, 'https://picsum.photos/seed/227/600'),
+                        _buildImageButton(0, 'https://i.imgur.com/dszTgQ7.png'),
+                        _buildImageButton(1, 'https://i.imgur.com/UTcfybT.png'),
                       ],
                     ),
                   ),
@@ -87,22 +85,8 @@ class _MainPageState extends State<MainPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        _buildImageButton(
-                            2, 'https://picsum.photos/seed/473/600'),
-                        _buildImageButton(
-                            3, 'https://picsum.photos/seed/227/600'),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        _buildImageButton(
-                            4, 'https://picsum.photos/seed/473/600'),
-                        _buildImageButton(
-                            5, 'https://picsum.photos/seed/227/600'),
+                        _buildImageButton(2, 'https://i.imgur.com/fQnPg5n.png'),
+                        _buildImageButton(3, 'https://i.imgur.com/dszTgQ7.png'),
                       ],
                     ),
                   ),
@@ -118,9 +102,14 @@ class _MainPageState extends State<MainPage> {
                   height: 40,
                   child: ElevatedButton(
                     onPressed: () {
-                      // Imprime o token ao pressionar o botão "Avançar"
-                      String? token = SessionManager().sessionToken;
-                      print('Token: $token');
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PaginaPrincipal()),
+                      );
+                      // // Imprime o token ao pressionar o botão "Avançar"
+                      // String? token = SessionManager().sessionToken;
+                      // print('Token: $token');
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xFF0072DE),
