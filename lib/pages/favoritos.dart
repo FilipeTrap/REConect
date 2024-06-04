@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-//import 'favoritos.dart';
 import 'perfil.dart';
 import 'gift_page.dart';
 import 'pagina_principal.dart';
@@ -23,8 +21,18 @@ class _FavoritosPageState extends State<FavoritosPage> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  // <<<<===== DESATIVAR O SCROLL: Remover ou comentar o SingleChildScrollView acima e o Expanded ao redor
-
+                  Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Text(
+                      'Você precisa estar no local para fazer o check-in e adicionar aos favoritos.',
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        color: Color(0xFF101213),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
                   //-------------------------------------------------------------------------
                   // COLE O CONTEUDO DA PAGINA AQUI
                   //-------------------------------------------------------------------------
@@ -32,7 +40,7 @@ class _FavoritosPageState extends State<FavoritosPage> {
               ),
             ),
           ),
-          Spacer(), // Adicionando espaçamento antes do menu inferior
+          // Removido Spacer(), pois ele não é necessário neste caso
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
